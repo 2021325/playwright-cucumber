@@ -1,0 +1,19 @@
+{
+  "name": "playwright-cucumber",
+  "version": "1.0.0",
+  "description": "This repository is for using playwright for automation using typescript as language and cucumber BDD approach",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js test"
+  },
+  "keywords": [],
+  "author": "Cyril",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.9.0",
+    "@playwright/test": "^1.46.1",
+    "@types/node": "^22.5.0",
+    "reflect-metadata": "^0.2.2",
+    "ts-node": "^10.9.2"
+  }
+}
