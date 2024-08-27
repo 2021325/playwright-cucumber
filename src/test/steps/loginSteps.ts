@@ -8,7 +8,7 @@ setDefaultTimeout(60000)
 
 Given('user is page {string}', async function (homePage: string) {
     
-    browser = await chromium.launch({headless: false})
+    browser = await chromium.launch({headless: true})
     page = await browser.newPage()
 
     await page.goto(homePage)
