@@ -21,7 +21,7 @@ Then('user provides email {string} and password {string}', async function (email
     await page.getByRole('textbox', {name:'password'}).fill(password)
     await page.getByRole('button', {name: 'Sign in'}).click()
 
-    //await page.close()
+    await page.close()
 
   });
 
