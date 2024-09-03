@@ -45,7 +45,7 @@ Follow the instructions below to set up the project and start running your first
 
 1. Clone the repository:
     ```bash
-    git clone 
+    git clone https://github.com/2021325/playwright-cucumber.git
     cd playwright-automation
     ```
 
