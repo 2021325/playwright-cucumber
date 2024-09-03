@@ -15,69 +15,96 @@ Playwright is a framework for Web Testing and Automation. It allows testing [Chr
 Headless execution is supported for all browsers on all platforms. Check out [system requirements](https://playwright.dev/docs/intro#system-requirements) for details.
 
 
-# playwright-cucumber
 
-This repository demonstrates how to set up Playwright with TypeScript and Cucumber for end-to-end testing.
 
-## Prerequisites
+## playwright-cucumber
 
-- VS code
-- Node.js (version 18 or higher)
-- npm or yarn
+[refer official doc](https://playwright.dev/docs/intro) for detailed understanding
 
-## Table of Contents
+This repository contains a Playwright-based automation framework using TypeScript with cucumber BDD approach. The framework is designed for end-to-end testing of web applications, providing a robust structure to write, run, and manage tests efficiently.
+
+### Table of Contents
 - [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
 - [Installation](#installation)
+- [Project Structure](#project-structure)
+- [Writing Tests](#writing-tests)
 - [Running Tests](#running-tests)
 - [Mock API Testing](#mock-api-testing)
 - [Continuous Integration](#continuous-integration)
 - [Contributing](#contributing)
 - [License](#license)
 
+### Getting Started
 
-## Installation
+Follow the instructions below to set up the project and start running your first tests.
+
+Prerequisites
+
+- [Node.js](https://nodejs.org/) (version 18+) Check out [system requirements](https://playwright.dev/docs/intro#system-requirements) for details.
+  - check node version and npm version in your system using command in gitbash/ cmd / powershell
+    ```bash
+    node -v
+    ```
+    ```bash
+    npm -v
+    ```
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- install extensions in vsCode
+  -  Playwright Test for VSCode
+  -  Cucumber
+
+### Installation
 
 1. Clone the repository:
     ```bash
     git clone https://github.com/2021325/playwright-cucumber.git
-    cd playwright-cucumber
+    cd playwright-automation
     ```
 
 2. Install dependencies:
     ```bash
     npm install
+    # or
+    yarn install
     ```
 
-## Usage
+3. Install Playwright browsers:
+    ```bash
+    npx playwright install
+    ```
 
-### Running Tests
 
-To run all tests, use the following command:
-```bash
-npm test
-```
-## Project Structure
+### Project Structure
 
-```project structure
+```plaintext
 playwright-cucumber/
 ├── src/
 │   ├── main/
-│   │   ├── pages/          Contains page object models.
-│   │   └── utils/          Contains utility functions.
+│   │   ├── pages/              Contains page object models.
+│   │   └── utils/              Contains utility functions.
 │   └── test/
-│       ├── features/       Contains feature files.
-│       └── steps/          Contains step definitions.
-├── playwright.config.ts    Configuration file for Playwright.
-├── cucumber.json           Configuration file for Cucumber.
-├── package.json            Project dependencies and scripts.
-└── README.md
+│       ├── features/           Contains feature files.
+│       └── steps/              Contains step definitions.
+├── playwright.config.ts        Configuration file for Playwright.
+├── cucumber.json               Configuration file for Cucumber.
+├── package.json                Project dependencies and scripts.
+└── tsconfig.json               typescript compiler and related configuration              
+└── README.md                   project ToDo's to get started and documentation
+└── .vscode
+      ├── settings.json        for mapping of cucumber.feature files in workspace                
+
 ```
 
-## Writing Tests
+### Writing Tests
+
+install cucumber and add dependency in package.json
+```bash
+npm i -D @cucumber/cucumber
+```
+
 Feature Files
-Feature files are written in Gherkin syntax and located in the src/test/features/ directory. Example
-```cucumber
+🥒 Cucumber Feature files are written in Gherkin syntax and located in the src/test/features/ directory. Example
+```feature
 Feature: Example feature
 
   Scenario: Example scenario
@@ -109,12 +136,26 @@ Then('I should see the login form', async function () {
   expect(loginForm).not.toBeNull();
 });
 ```
+providing appropraite mapping to read cucumber.feature files in .vscode/settings.json
+```json
+{
+    "cucumber.features": [
+
+        "src/test/features/*.feature", 
+    ],
+    "cucumber.glue": [
+        "src/test/steps/*.ts",
+    ]
+
+}
+```
+
 
 Configuration
 Playwright Configuration
 The playwright.config.ts file contains configuration for Playwright. Example:
 
-```typescript
+```Typescript
 import { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
@@ -127,7 +168,57 @@ const config: PlaywrightTestConfig = {
 export default config;
 ```
 
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request.
+NPM Scripts
+The following npm scripts are available for running and managing tests:
 
-## License
+npm test: Runs all tests using Playwright.
+npm run show-report: Generates and opens the HTML report after tests are executed.
+npm run test:ci: Runs tests in headless mode for CI/CD environments.
+To add these scripts to your package.json, include the following:
+
+```json
+{
+  "scripts": {
+    "test": "npx cucumber-js test",
+  }
+}
+```
+
+### Running Tests
+
+```bash
+npm run test
+```
+
+
+### Mock API Testing
+
+example illustrating with playwright framework(using test) , for using from cucumber feature files use the same page.route() implementation
+
+```Typescript
+import { test, expect } from '@playwright/test';
+
+test('mock API example', async ({ page }) => {
+  await page.route('https://example.com/api/data', route => {
+    route.fulfill({
+      status: 200,
+      body: JSON.stringify({ key: 'value' }),
+    });
+  });
+
+  await page.goto('https://example.com');
+  // Additional test steps to verify the mock data
+});
+```
+
+
+### Continuous Integration
+
+[check playwright docs for ci](https://playwright.dev/docs/ci)
+
+### Contributing
+Author : [Cyril Arickathil](https://github.com/2021325)
+- Contributions are welcome! Please open an [issue](https://github.com/2021325/playwright-cucumber/issues) or submit a [pull request](https://github.com/2021325/playwright-cucumber/pulls).
+
+### License
+
