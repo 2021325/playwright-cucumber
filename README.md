@@ -41,6 +41,13 @@ Follow the instructions below to set up the project and start running your first
 Prerequisites
 
 - [Node.js](https://nodejs.org/) (version 18+) Check out [system requirements](https://playwright.dev/docs/intro#system-requirements) for details.
+  - check node version and npm version in your system using command in gitbash/ cmd / powershell
+    ```bash
+    node -v
+    ```
+    ```bash
+    npm -v
+    ```
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 - install extensions in vsCode
   -  Playwright Test for VSCode
@@ -90,7 +97,7 @@ playwright-cucumber/
 
 ### Writing Tests
 
-install cucumber and dependency in package.json
+install cucumber and add dependency in package.json
 ```bash
 npm i -D @cucumber/cucumber
 ```
