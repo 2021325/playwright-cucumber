@@ -17,32 +17,34 @@ Headless execution is supported for all browsers on all platforms. Check out [sy
 
 
 
-# playwright-cucumber
+## playwright-cucumber
 
+[refer official doc](https://playwright.dev/docs/intro) for detailed understanding
 
-This repository contains a Playwright-based automation framework using TypeScript. The framework is designed for end-to-end testing of web applications, providing a robust structure to write, run, and manage tests efficiently.
+This repository contains a Playwright-based automation framework using TypeScript with cucumber BDD approach. The framework is designed for end-to-end testing of web applications, providing a robust structure to write, run, and manage tests efficiently.
 
-## Table of Contents
+### Table of Contents
 - [Getting Started](#getting-started)
 - [Installation](#installation)
 - [Project Structure](#project-structure)
+- [Writing Tests](#writing-tests)
 - [Running Tests](#running-tests)
 - [Mock API Testing](#mock-api-testing)
 - [Continuous Integration](#continuous-integration)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Getting Started
+### Getting Started
 
 Follow the instructions below to set up the project and start running your first tests.
 
-### Prerequisites
+Prerequisites
 
 - [Node.js](https://nodejs.org/) (version 18+) Check out [system requirements](https://playwright.dev/docs/intro#system-requirements) for details.
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 - install extensions in vsCode
-          - Playwright Test for VSCode
-          - Cucumber
+  -  Playwright Test for VSCode
+  -  Cucumber
 
 ### Installation
 
@@ -65,7 +67,7 @@ Follow the instructions below to set up the project and start running your first
     ```
 
 
-## Project Structure
+### Project Structure
 
 ```plaintext
 playwright-cucumber/
@@ -86,7 +88,7 @@ playwright-cucumber/
 
 ```
 
-## Writing Tests
+### Writing Tests
 
 install cucumber and dependency in package.json
 ```bash
@@ -170,14 +172,21 @@ To add these scripts to your package.json, include the following:
 ```json
 {
   "scripts": {
-    "test": "npx playwright test",
-    "show-report": "npx playwright show-report",
-    "test:ci": "npx playwright test --ci"
+    "test": "npx cucumber-js test",
   }
 }
 ```
-## Mock API Testing
 
+### Running Tests
+
+```bash
+npm run test
+```
+
+
+### Mock API Testing
+
+example illustrating with playwright framework(using test) , for using from cucumber feature files use the same page.route() implementation
 
 ```Typescript
 import { test, expect } from '@playwright/test';
@@ -196,12 +205,12 @@ test('mock API example', async ({ page }) => {
 ```
 
 
-## Continuous Integration
+### Continuous Integration
 
 [check playwright docs for ci](https://playwright.dev/docs/ci)
 
-## Contributing
+### Contributing
 Author : Cyril Arickathil
 Contributions are welcome! Please open an issue or submit a pull request.
 
-## License
+### License
