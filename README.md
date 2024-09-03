@@ -41,8 +41,8 @@ Follow the instructions below to set up the project and start running your first
 - [Node.js](https://nodejs.org/) (version 18+) Check out [system requirements](https://playwright.dev/docs/intro#system-requirements) for details.
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 - install extensions in vsCode
-          1.Playwright Test for VSCode
-          2.Cucumber
+          - Playwright Test for VSCode
+          - Cucumber
 
 ### Installation
 
@@ -95,7 +95,7 @@ npm i -D @cucumber/cucumber
 
 Feature Files
 🥒 Cucumber Feature files are written in Gherkin syntax and located in the src/test/features/ directory. Example
-```cucumber
+```feature
 Feature: Example feature
 
   Scenario: Example scenario
