@@ -59,6 +59,7 @@ npm test
 ```
 ## Project Structure
 
+```project structure
 playwright-cucumber/
 ├── src/
 │   ├── main/
@@ -71,21 +72,24 @@ playwright-cucumber/
 ├── cucumber.json           Configuration file for Cucumber.
 ├── package.json            Project dependencies and scripts.
 └── README.md
+```
 
 ## Writing Tests
 Feature Files
 Feature files are written in Gherkin syntax and located in the src/test/features/ directory. Example
-
+```cucumber
 Feature: Example feature
 
   Scenario: Example scenario
     Given I open the homepage
     When I click on the login button
     Then I should see the login form
+```
 
 Step Definitions
 Step definitions are located in the src/test/steps/ directory. Example:
 
+```typescript
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { Page } from 'playwright';
@@ -104,11 +108,13 @@ Then('I should see the login form', async function () {
   const loginForm = await page.$('#login-form');
   expect(loginForm).not.toBeNull();
 });
+```
 
 Configuration
 Playwright Configuration
 The playwright.config.ts file contains configuration for Playwright. Example:
 
+```typescript
 import { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
@@ -119,30 +125,7 @@ const config: PlaywrightTestConfig = {
 };
 
 export default config;
-
-NPM Scripts
-The following npm scripts are available for running and managing tests:
-
-npm test: Runs all tests using Playwright.
-npm run show-report: Generates and opens the HTML report after tests are executed.
-npm run test:ci: Runs tests in headless mode for CI/CD environments.
-To add these scripts to your package.json, include the following:
-
-```Typescript
-{
-  "scripts": {
-    "test": "npx playwright test",
-    "show-report": "npx playwright show-report",
-    "test:ci": "npx playwright test --ci"
-  }
-}
 ```
-
-
-## Continuous Integration
-
-[check playwright docs for ci](https://playwright.dev/docs/ci)
-
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request.
