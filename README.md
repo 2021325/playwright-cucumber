@@ -210,7 +210,8 @@ test('mock API example', async ({ page }) => {
 [check playwright docs for ci](https://playwright.dev/docs/ci)
 
 ### Contributing
-Author : Cyril Arickathil
-Contributions are welcome! Please open an issue or submit a pull request.
+Author : [Cyril Arickathil](https://github.com/2021325)
+- Contributions are welcome! Please open an [issue](https://github.com/2021325/playwright-cucumber/issues) or submit a [pull request](https://github.com/2021325/playwright-cucumber/pulls).
 
 ### License
+
