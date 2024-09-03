@@ -69,3 +69,42 @@ Feature: Example feature
 Step Definitions
 Step definitions are located in the src/test/steps/ directory. Example:
 
+import { Given, When, Then } from '@cucumber/cucumber';
+import { expect } from '@playwright/test';
+import { Page } from 'playwright';
+
+let page: Page;
+
+Given('I open the homepage', async function () {
+  await page.goto('https://example.com');
+});
+
+When('I click on the login button', async function () {
+  await page.click('#login');
+});
+
+Then('I should see the login form', async function () {
+  const loginForm = await page.$('#login-form');
+  expect(loginForm).not.toBeNull();
+});
+
+Configuration
+Playwright Configuration
+The playwright.config.ts file contains configuration for Playwright. Example:
+
+import { PlaywrightTestConfig } from '@playwright/test';
+
+const config: PlaywrightTestConfig = {
+  use: {
+    headless: true,
+    viewport: { width: 1280, height: 720 },
+  },
+};
+
+export default config;
+
+
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## License
