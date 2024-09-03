@@ -24,8 +24,8 @@ This repository contains a Playwright-based automation framework using TypeScrip
 
 ## Table of Contents
 - [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
 - [Installation](#installation)
+- [Project Structure](#project-structure)
 - [Running Tests](#running-tests)
 - [Mock API Testing](#mock-api-testing)
 - [Continuous Integration](#continuous-integration)
@@ -38,8 +38,11 @@ Follow the instructions below to set up the project and start running your first
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (version 18 or higher) Check out [system requirements](https://playwright.dev/docs/intro#system-requirements) for details.
+- [Node.js](https://nodejs.org/) (version 18+) Check out [system requirements](https://playwright.dev/docs/intro#system-requirements) for details.
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- install extensions in vsCode
+          1.Playwright Test for VSCode
+          2.Cucumber
 
 ### Installation
 
@@ -68,18 +71,28 @@ Follow the instructions below to set up the project and start running your first
 playwright-cucumber/
 ├── src/
 │   ├── main/
-│   │   ├── pages/          Contains page object models.
-│   │   └── utils/          Contains utility functions.
+│   │   ├── pages/              Contains page object models.
+│   │   └── utils/              Contains utility functions.
 │   └── test/
-│       ├── features/       Contains feature files.
-│       └── steps/          Contains step definitions.
-├── playwright.config.ts    Configuration file for Playwright.
-├── cucumber.json           Configuration file for Cucumber.
-├── package.json            Project dependencies and scripts.
-└── README.md
+│       ├── features/           Contains feature files.
+│       └── steps/              Contains step definitions.
+├── playwright.config.ts        Configuration file for Playwright.
+├── cucumber.json               Configuration file for Cucumber.
+├── package.json                Project dependencies and scripts.
+└── tsconfig.json               typescript compiler and related configuration              
+└── README.md                   project ToDo's to get started and documentation
+└── .vscode
+      ├── settings.json        for mapping of cucumber.feature files in workspace                
+
 ```
 
 ## Writing Tests
+
+install cucumber and dependency in package.json
+```bash
+npm i -D @cucumber/cucumber
+```
+
 Feature Files
 🥒 Cucumber Feature files are written in Gherkin syntax and located in the src/test/features/ directory. Example
 ```cucumber
@@ -114,12 +127,26 @@ Then('I should see the login form', async function () {
   expect(loginForm).not.toBeNull();
 });
 ```
+providing appropraite mapping to read cucumber.feature files in .vscode/settings.json
+```json
+{
+    "cucumber.features": [
+
+        "src/test/features/*.feature", 
+    ],
+    "cucumber.glue": [
+        "src/test/steps/*.ts",
+    ]
+
+}
+```
+
 
 Configuration
 Playwright Configuration
 The playwright.config.ts file contains configuration for Playwright. Example:
 
-```typescript
+```Typescript
 import { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
@@ -140,7 +167,7 @@ npm run show-report: Generates and opens the HTML report after tests are execute
 npm run test:ci: Runs tests in headless mode for CI/CD environments.
 To add these scripts to your package.json, include the following:
 
-```Typescript
+```json
 {
   "scripts": {
     "test": "npx playwright test",
@@ -149,12 +176,32 @@ To add these scripts to your package.json, include the following:
   }
 }
 ```
+## Mock API Testing
+
+
+```Typescript
+import { test, expect } from '@playwright/test';
+
+test('mock API example', async ({ page }) => {
+  await page.route('https://example.com/api/data', route => {
+    route.fulfill({
+      status: 200,
+      body: JSON.stringify({ key: 'value' }),
+    });
+  });
+
+  await page.goto('https://example.com');
+  // Additional test steps to verify the mock data
+});
+```
+
 
 ## Continuous Integration
 
 [check playwright docs for ci](https://playwright.dev/docs/ci)
 
 ## Contributing
+Author : Cyril Arickathil
 Contributions are welcome! Please open an issue or submit a pull request.
 
 ## License
