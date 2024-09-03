@@ -81,7 +81,7 @@ playwright-cucumber/
 
 ## Writing Tests
 Feature Files
-Feature files are written in Gherkin syntax and located in the src/test/features/ directory. Example
+🥒 Cucumber Feature files are written in Gherkin syntax and located in the src/test/features/ directory. Example
 ```cucumber
 Feature: Example feature
 
